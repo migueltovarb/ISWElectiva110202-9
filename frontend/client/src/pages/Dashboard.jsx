@@ -82,12 +82,15 @@ export function Dashboard() {
         <Link to="/add-product" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow transition">
           ➕ Registrar Producto
         </Link>
-        <button onClick={generateCSV} className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg shadow transition">
-          📄 Generar CSV
-        </button>
         <button onClick={generatePDF} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow transition">
           📑 Generar PDF
         </button>
+        <button onClick={generateCSV} className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg shadow transition">
+          📄 Generar CSV
+        </button>
+        <Link to="/audit" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg shadow transition">
+          🔍 Auditoría
+        </Link>
         <Link to="/settings" className="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg shadow transition">
           ⚙️ Configuración
         </Link>

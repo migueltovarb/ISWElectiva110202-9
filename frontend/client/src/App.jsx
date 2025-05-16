@@ -7,6 +7,8 @@ import NotFound from './pages/NotFound';
 import { Settings } from './pages/Settings';
 import { ProductExitReport } from "./components/ProductExitReport";
 import Report from './pages/Report'; // Asegúrate de importar el componente Report
+import AuditLogs from './components/AuditLogs';
+
 
 function App() {
     return (
@@ -21,6 +23,9 @@ function App() {
                 <Route path="*" element={<NotFound />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/product-exit-report/:productId" element={<ProductExitReport />} />
+                <Route path="/audit" element={<AuditLogs />} />
+
+
             </Routes>
         </BrowserRouter>
     );

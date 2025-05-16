@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9#6ffsr-8&#q0$e6z67_$w_5*4)i#mu1)7*uy1cjw^y%0q-ad^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'coreapi',
     'products',
     'rest_framework_simplejwt',
-    'accounts'
+    'accounts',
+    'auditlog',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +88,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'  # Asegúrate de que 'accounts' sea el n
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'products',
+        'NAME': 'product',
         'USER': 'santi',
         'PASSWORD': '123',
         'HOST': 'localhost',
