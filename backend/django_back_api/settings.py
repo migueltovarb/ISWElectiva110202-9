@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     'coreapi',
     'products',
     'rest_framework_simplejwt',
-    'accounts',
-    'auditlog',
+    #'auditlog',
     'django_filters',
 ]
 
@@ -77,7 +76,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_back_api.wsgi.application'
-AUTH_USER_MODEL = 'accounts.CustomUser'  # Asegúrate de que 'accounts' sea el nombre correcto de tu app
 
 
 

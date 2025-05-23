@@ -19,6 +19,8 @@ const AuditLogs = () => {
           <tr>
             <th className="border px-4 py-2">Usuario</th>
             <th className="border px-4 py-2">Acción</th>
+            <th className="border px-4 py-2">Producto</th>
+            <th className="border px-4 py-2">Cantidad</th>
             <th className="border px-4 py-2">Descripción</th>
             <th className="border px-4 py-2">Fecha</th>
           </tr>
@@ -28,6 +30,10 @@ const AuditLogs = () => {
             <tr key={index} className="text-center">
               <td className="border px-4 py-2">{log.user}</td>
               <td className="border px-4 py-2">{log.action}</td>
+              <td className="border px-4 py-2">{log.product ? log.product.name : '—'}</td>
+              <td className="border px-4 py-2">
+                {(log.action === 'ENTRADA_PRODUCTO' || log.action === 'SALIDA_PRODUCTO') ? log.quantity : '—'}
+              </td>
               <td className="border px-4 py-2">{log.description}</td>
               <td className="border px-4 py-2">{new Date(log.timestamp).toLocaleString()}</td>
             </tr>

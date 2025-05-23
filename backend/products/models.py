@@ -25,14 +25,9 @@ class Product(models.Model):
     expiration_date = models.DateField(null=True, blank=True)
 
     def clean(self):
-        # Validación de precios
         if self.sale_price <= self.purchase_price:
             raise ValidationError("El precio de venta debe ser mayor que el de compra.")
-        
-        # Validación de precio negativo
         validate_sale_price(self.sale_price)
-        
-        # Validación de fecha de caducidad solo si el producto es perecedero
         if self.expiration_date and self.expiration_date <= now().date():
             raise ValidationError("La fecha de caducidad debe ser posterior a hoy.")
 
