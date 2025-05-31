@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Report = () => {
-  // Estado para guardar los datos de la API
   const [data, setData] = useState([]);
-  
-  // Llamada a la API cuando el componente se monta
+
+  const backendURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+
   useEffect(() => {
-    axios.get('http://localhost:8000/report/')
+    axios.get(`${backendURL}/report/`)
       .then(response => {
         setData(response.data);
       })
       .catch(error => {
         console.error('Error fetching report data', error);
       });
-  }, []);
-  
-  // Si no hay datos, mostrar un mensaje de carga
+  }, [backendURL]);
+
   if (data.length === 0) {
     return <div>Loading...</div>;
   }
 
-  // Preparación de los datos para los gráficos
   const stockData = data.map(item => ({
     category: item.category,
     stock_quantity: item.stock_quantity
@@ -35,29 +34,33 @@ const Report = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Report - Inventory Distribution</h2>
+      <h2>Reporte - Distribución del Inventario</h2>
 
-      {/* Gráfico de barras para el stock por categoría */}
+      <h3 style={{ marginTop: '40px', marginBottom: '10px' }}>Cantidad en Stock por Categoría</h3>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={stockData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" />
           <YAxis />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="stock_quantity" fill="#8884d8" />
+          <Legend
+            formatter={() => 'Cantidad en Stock'}
+          />
+          <Bar dataKey="stock_quantity" fill="#8884d8" name="Cantidad en Stock" />
         </BarChart>
       </ResponsiveContainer>
 
-      {/* Gráfico de barras para ventas totales por categoría */}
+      <h3 style={{ marginTop: '60px', marginBottom: '10px' }}>Ganancias Esperadas del Stock por Categoría</h3>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={salesData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" />
           <YAxis />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="total_sales" fill="#82ca9d" />
+          <Legend
+            formatter={() => 'Ganancias Esperadas del Stock'}
+          />
+          <Bar dataKey="total_sales" fill="#82ca9d" name="Ganancias Esperadas" />
         </BarChart>
       </ResponsiveContainer>
     </div>
